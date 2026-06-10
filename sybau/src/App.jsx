@@ -8,29 +8,55 @@ import axios from 'axios'
 
 const weatherApiKey = 'c7616da4b68205c2f3ae73df2c31d177';
 
-function App() {
-  const [count, setCount] = useState(0)
+useEffect(() => {
+  async function fetchAllData() {
+    try {
+      const currencyResponse = await axios.get(
+        'https://www.cbr-xml-daily.ru/daily_json.js'
+      );
 
-  const [rates, setRates] = useState({})
-  const [weatherData, setWeatherData] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState('')
-
-  useEffect(() => {
-
-    async function fetchAllData() {
-      try {
-        const currencyResponse = await axios.get(
-          'https://www.cbr-xml-daily.ru/daily_json.js'
-        );
-        if (!currencyResponse.data || !currencyResponse.data.Valute) {
-          throw new Error('Нет данынх о валюте');
-        }
+      if (!currencyResponse.data?.Valute) {
+        throw new Error('Нет данных о валюте');
       }
-      
+
+      const USDrate = currencyResponse.data.Valute.USD.Value
+        .toFixed(4)
+        .replace('.', ',');
+
+      const EURrate = currencyResponse.data.Valute.EUR.Value
+        .toFixed(4)
+        .replace('.', ',');
+
+      setRates({ USD: USDrate, EUR: EURrate });
+
+      const position = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject);
+      });
+
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      const weatherResponse = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${weatherApiKey}`
+      );
+
+      if (!weatherResponse.data?.main) {
+        throw new Error('Нет данных о погоде');
+      }
+
+      setWeatherData(weatherResponse.data);
+
+    } catch (err) {
+      console.error(err);
+      setError(err.message || 'Ошибка загрузки данных');
+    } finally {
+      setLoading(false);
     }
   }
-)
+
+  fetchAllData(); // ← важно вызвать функцию!
+
+}, []); // пустой массив зависимостей
 
   return (
     <>
@@ -142,8 +168,5 @@ function App() {
       <section id="spacer"></section>
     </>
   )
-
-
-}
 
 export default App
