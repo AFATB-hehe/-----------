@@ -1,11 +1,36 @@
-import { useState } from 'react'
+import React, { useState, useEffect} from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
+import axios from 'axios'
+
+const weatherApiKey = 'c7616da4b68205c2f3ae73df2c31d177';
 
 function App() {
   const [count, setCount] = useState(0)
+
+  const [rates, setRates] = useState({})
+  const [weatherData, setWeatherData] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
+
+  useEffect(() => {
+
+    async function fetchAllData() {
+      try {
+        const currencyResponse = await axios.get(
+          'https://www.cbr-xml-daily.ru/daily_json.js'
+        );
+        if (!currencyResponse.data || !currencyResponse.data.Valute) {
+          throw new Error('Нет данынх о валюте');
+        }
+      }
+      
+    }
+  }
+)
 
   return (
     <>
@@ -117,6 +142,8 @@ function App() {
       <section id="spacer"></section>
     </>
   )
+
+
 }
 
 export default App
