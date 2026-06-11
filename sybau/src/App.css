@@ -99,22 +99,18 @@ input {
   outline: none;
   width: 320px;
   background-color: white;
+  color: #1a1a1a;          
+  font-weight: 500;
 }
 
-button {
-  padding: 14px 24px;
-  font-size: 16px;
-  background: linear-gradient(90deg, #5d0cff, #2ea4db);
-  color: white;
-  border: none;
-  border-radius: 0 8px 8px 0;
-  cursor: pointer;
-  transition: 0.3s;
+input::placeholder {
+  color: #888;             
+  font-weight: 400;
 }
 
-button:hover {
-  background: linear-gradient(90deg, #4a00e0, #1e90ff);
-  transform: translateY(-2px);
+input:focus {
+  border-color: #4a00e0;
+  box-shadow: 0 0 0 3px rgba(93, 12, 255, 0.2);
 }
 
 /* ===================== СПИСОК ЗАДАЧ ===================== */
@@ -127,7 +123,7 @@ button:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 0, 0.9);
   border: 2px solid #5d0cff;
   border-radius: 8px;
   padding: 12px 18px;
