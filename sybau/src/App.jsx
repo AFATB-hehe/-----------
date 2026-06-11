@@ -9,6 +9,7 @@ const weatherApiKey = 'c7616da4b68205c2f3ae73df2c31d177';
 const TASKS_STORAGE_KEY = 'tasks-list-project-web';
 
 function App() {
+  // force rebuild - fix return error
   const [rates, setRates] = useState({});
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
