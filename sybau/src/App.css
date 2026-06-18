@@ -17,7 +17,6 @@
   }
 }
 
-/* ===================== ГЛОБАЛЬНЫЕ СТИЛИ ===================== */
 #root {
   min-height: 100vh;
   background-image: url('https://img.magnific.com/free-vector/blurred-background-with-light-colors_1034-245.jpg?semt=ais_hybrid&w=740&q=80'); /* Замени на свой фон */
@@ -33,7 +32,6 @@
   text-align: center;
 }
 
-/* ===================== БЛОК С КУРСАМИ ВАЛЮТ ===================== */
 .info {
   display: flex;
   justify-content: center;
@@ -52,7 +50,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* ===================== БЛОК ПОГОДЫ ===================== */
 .weather-info {
   background-color: rgba(255, 255, 255, 0.95);
   color: #000;
@@ -75,14 +72,12 @@
   vertical-align: middle;
 }
 
-/* ===================== ЗАГОЛОВОК СПИСКА ЗАДАЧ ===================== */
 .list-header {
   color: #333;
   font-size: 26px;
   margin: 30px 0 15px 0;
 }
 
-/* ===================== ФОРМА ДОБАВЛЕНИЯ ЗАДАЧ ===================== */
 form {
   display: flex;
   justify-content: center;
@@ -113,7 +108,6 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(93, 12, 255, 0.2);
 }
 
-/* ===================== СПИСОК ЗАДАЧ ===================== */
 .todos {
   max-width: 600px;
   margin: 0 auto;
@@ -158,7 +152,6 @@ input:focus {
   transform: scale(1.2);
 }
 
-/* ===================== АДАПТИВНОСТЬ ===================== */
 @media (max-width: 768px) {
   .info {
     flex-direction: column;

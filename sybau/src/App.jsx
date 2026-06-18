@@ -9,7 +9,6 @@ const weatherApiKey = 'c7616da4b68205c2f3ae73df2c31d177';
 const TASKS_STORAGE_KEY = 'tasks-list-project-web';
 
 function App() {
-  // force rebuild - fix return error
   const [rates, setRates] = useState({});
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -30,12 +29,10 @@ function App() {
     return [];
   });
 
-  // Автосохранение задач в localStorage
   useEffect(() => {
     localStorage.setItem(TASKS_STORAGE_KEY, JSON.stringify(todos));
   }, [todos]);
 
-  // Загрузка курсов валют и погоды
   useEffect(() => {
     async function fetchAllData() {
       try {
