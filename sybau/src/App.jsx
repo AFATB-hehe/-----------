@@ -13,8 +13,6 @@ function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-
-  // Состояние задач с загрузкой из localStorage (рекомендуемый способ)
   const [todos, setTodos] = useState(() => {
     const storedTasks = localStorage.getItem(TASKS_STORAGE_KEY);
     if (storedTasks) {
